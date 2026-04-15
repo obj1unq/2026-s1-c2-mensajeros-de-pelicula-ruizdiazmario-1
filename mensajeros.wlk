@@ -1,4 +1,4 @@
-object Paquete {
+object paquete {
   var estaPago = false
 
   method pagarPaquete() {
@@ -22,8 +22,14 @@ object matrix {
 }
 
 object jeanGray {
-  method peso() = 65
-  method puedeLlamar() = true
+  
+  method peso() {
+    return 65
+  } 
+  
+  method puedeLlamar() {
+    return true
+  } 
 
   method puedeIrA(destino) {
     return destino.permiteA(self)
@@ -33,13 +39,18 @@ object jeanGray {
 object neo {
   var tieneCredito = false
 
-  method peso() = 0
+  method peso() {
+    return 0
+  } 
   
-  method puedeLlamar() = tieneCredito
+  method puedeLlamar() {
+    return tieneCredito
+  }
 
   method darleCredito() {
-	tieneCredito = true
-  }  
+	  tieneCredito = true
+  }
+
   method puedeIrA(destino) {
     return destino.permiteA(self)
   }
@@ -54,10 +65,12 @@ object saraConnor {
   }
 
   method asignarVehiculo(unVehiculo) {
-	vehiculo = unVehiculo
+	  vehiculo = unVehiculo
   }
 
-  method puedeLlamar() = false
+  method puedeLlamar() {
+    return false
+  } 
 
   method puedeIrA(destino) {
     return destino.permiteA(self)
@@ -65,14 +78,17 @@ object saraConnor {
 }
 
 object moto {
-  method peso() = 100
+
+  method peso() {
+    return 100
+  }
 }
 
 object camion {
   var acoplados = 0
 
   method agregarAcoplados(cantidadDeAcoplados) {
-	acoplados = acoplados + cantidadDeAcoplados
+	  acoplados = acoplados + cantidadDeAcoplados
   }
 
   method peso() {
