@@ -1,17 +1,20 @@
 object paquete {
   var estaPago = false
 
-  method pagarPaquete() {
+  method pagar() {
 	estaPago = true
   }
 
   method puedeSerEntregadoPor(mensajero, destino) {
-    return estaPago && mensajero.puedeIrA(destino)
+    return estaPago && destino.permiteA(mensajero)
   }
 }
+
 object brooklyn {
+  const pesoMaximoPermitido = 1000
+
   method permiteA(mensajero) {
-    return mensajero.peso() <= 1000
+    return mensajero.peso() <= pesoMaximoPermitido
   }
 }
 
@@ -30,10 +33,6 @@ object jeanGray {
   method puedeLlamar() {
     return true
   } 
-
-  method puedeIrA(destino) {
-    return destino.permiteA(self)
-  }
 }
 
 object neo {
@@ -50,10 +49,6 @@ object neo {
   method darleCredito() {
 	  tieneCredito = true
   }
-
-  method puedeIrA(destino) {
-    return destino.permiteA(self)
-  }
 }
 
 object saraConnor {
@@ -61,7 +56,11 @@ object saraConnor {
   var vehiculo = null
 
   method peso() {
-    return pesoPropio + vehiculo.peso()
+    if (vehiculo == null) {
+      return pesoPropio
+    } else {
+      return pesoPropio + vehiculo.peso()
+    }
   }
 
   method asignarVehiculo(unVehiculo) {
@@ -71,10 +70,6 @@ object saraConnor {
   method puedeLlamar() {
     return false
   } 
-
-  method puedeIrA(destino) {
-    return destino.permiteA(self)
-  }
 }
 
 object moto {
@@ -86,12 +81,13 @@ object moto {
 
 object camion {
   var acoplados = 0
+  const toneladasAdicionales = 500
 
   method agregarAcoplados(cantidadDeAcoplados) {
 	  acoplados = acoplados + cantidadDeAcoplados
   }
 
   method peso() {
-    return 500 + (acoplados * 500)
+    return 500 + (acoplados * toneladasAdicionales)
   }
 }

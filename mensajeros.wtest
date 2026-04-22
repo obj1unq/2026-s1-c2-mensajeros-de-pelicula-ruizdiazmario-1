@@ -6,21 +6,21 @@ describe "Tests de entrega de paquetes" {
   }
 
   test "El paquete de George pago puede ser llevado por Jean a Matrix" {
-    paquete.pagarPaquete()
+    paquete.pagar()
     assert.that(paquete.puedeSerEntregadoPor(jeanGray, matrix))
   }
 
   test "El paquete pago no puede ser llevado por Sara a Brooklyn con camion con acoplado" {
-    paquete.pagarPaquete()
+    paquete.pagar()
 
-    camion.agregarAcoplados(1) // le agregamos acoplado
+    camion.agregarAcoplados(1)
     saraConnor.asignarVehiculo(camion)
 
     assert.notThat(paquete.puedeSerEntregadoPor(saraConnor, brooklyn))
   }
 
   test "El paquete pago puede ser llevado por Sara a Brooklyn con moto" {
-    paquete.pagarPaquete()
+    paquete.pagar()
 
     saraConnor.asignarVehiculo(moto)
 
