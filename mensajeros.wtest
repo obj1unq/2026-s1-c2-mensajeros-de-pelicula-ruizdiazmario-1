@@ -1,0 +1,29 @@
+import mensajeros.*
+describe "Tests de entrega de paquetes" {
+
+  test "El paquete de George que no está pago no puede ser llevado por Neo a Matrix" {
+    assert.notThat(paquete.puedeSerEntregadoPor(neo, matrix))
+  }
+
+  test "El paquete de George pago puede ser llevado por Jean a Matrix" {
+    paquete.pagar()
+    assert.that(paquete.puedeSerEntregadoPor(jeanGray, matrix))
+  }
+
+  test "El paquete pago no puede ser llevado por Sara a Brooklyn con camion con acoplado" {
+    paquete.pagar()
+
+    camion.agregarAcoplados(1)
+    saraConnor.asignarVehiculo(camion)
+
+    assert.notThat(paquete.puedeSerEntregadoPor(saraConnor, brooklyn))
+  }
+
+  test "El paquete pago puede ser llevado por Sara a Brooklyn con moto" {
+    paquete.pagar()
+
+    saraConnor.asignarVehiculo(moto)
+
+    assert.that(paquete.puedeSerEntregadoPor(saraConnor, brooklyn))
+  }
+}
